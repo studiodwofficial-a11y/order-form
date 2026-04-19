@@ -61,12 +61,11 @@
         }
         .submit-btn:active { transform: translateY(6px); box-shadow: 0 2px 0 #6e881c; }
 
-        /* [추가] 복사 실패 시 나타날 텍스트 영역 스타일 */
         #fallback-area { display: none; margin-top: 30px; animation: fadeIn 0.5s; }
-        #result-text { width: 100%; height: 150px; background: #222; color: #fff; border: 1px solid var(--point); border-radius: 15px; padding: 15px; font-size: 14px; margin-top: 10px; }
+        #result-text { width: 100%; height: 200px; background: #222; color: #fff; border: 1px solid var(--point); border-radius: 15px; padding: 15px; font-size: 14px; margin-top: 10px; line-height: 1.5; }
         @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
 
-        @media (max-width: 600px) { .form-container { padding: 40px 25px; } .header h1 { font-size: 28px; } .submit-btn { width: 100%; } }
+        @media (max-width: 600px) { .form-container { padding: 40px 25px; } .header h1 { font-size: 28px; } .submit-btn { width: 100%; padding: 18px 0; } }
     </style>
 </head>
 <body>
@@ -80,7 +79,7 @@
 
         <form id="orderForm">
             <div class="form-group">
-                <label class="title">업로드 채널 <span>(링크)</span></label>
+                <label class="title">업로드 채널 <span>(링크) - 포트폴리오 추가를 위해 요청드리고 있습니다.</span></label>
                 <input type="text" id="channel" placeholder="채널 링크를 입력해주세요">
             </div>
 
@@ -105,18 +104,35 @@
             </div>
 
             <div class="form-group">
-                <label class="title">추가옵션</label>
+                <label class="title">자막 언어</label>
                 <div class="checkbox-group">
-                    <label class="checkbox-label"><input type="checkbox" name="opt" value="썸네일"> 썸네일</label>
-                    <label class="checkbox-label"><input type="checkbox" name="opt" value="Live2D"> Live2D</label>
-                    <label class="checkbox-label"><input type="checkbox" name="opt" value="수익창출"> 수익창출</label>
-                    <label class="checkbox-label"><input type="checkbox" name="opt" value="빠른마감"> 빠른마감</label>
+                    <label class="checkbox-label"><input type="radio" name="lang" value="한국어"> 한국어</label>
+                    <label class="checkbox-label"><input type="radio" name="lang" value="일본어"> 일본어</label>
+                    <label class="checkbox-label"><input type="radio" name="lang" value="영어"> 영어</label>
                 </div>
             </div>
 
             <div class="form-group">
+                <label class="title">추가옵션 <span>(중복 선택 가능)</span></label>
+                <div class="checkbox-group">
+                    <label class="checkbox-label"><input type="checkbox" name="opt" value="썸네일"> 썸네일</label>
+                    <label class="checkbox-label"><input type="checkbox" name="opt" value="Live2D"> Live2D</label>
+                    <label class="checkbox-label"><input type="checkbox" name="opt" value="배경2D"> 배경추가(2D)</label>
+                    <label class="checkbox-label"><input type="checkbox" name="opt" value="배경3D"> 배경추가(3D)</label>
+                    <label class="checkbox-label"><input type="checkbox" name="opt" value="수익창출"> 수익창출</label>
+                    <label class="checkbox-label"><input type="checkbox" name="opt" value="빠른마감"> 빠른마감</label>
+                    <label class="checkbox-label"><input type="checkbox" name="opt" value="숏폼"> SNS/숏폼</label>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label class="title">희망 마감일</label>
+                <input type="date" id="deadline">
+            </div>
+
+            <div class="form-group">
                 <label class="title">희망 연출 / 크레딧</label>
-                <textarea id="credit" placeholder="희망 사항을 입력해주세요."></textarea>
+                <textarea id="credit" placeholder="연출 희망 사항이나 크레딧 정보를 입력해주세요."></textarea>
             </div>
 
             <div class="form-group">
@@ -141,25 +157,37 @@
 <script>
     async function copyResult() {
         if(!document.getElementById('agree').checked) {
-            alert('안내사항 동의에 체크해주세요!'); return;
+            alert('안내사항 동의에 체크해주셔야 양식 복사가 가능합니다.'); 
+            return; 
         }
 
         const getVal = (id) => document.getElementById(id).value || '미입력';
-        const getCheck = (name) => Array.from(document.querySelectorAll(`input[name="${name}"]:checked`)).map(el => el.value).join(', ') || '선택안함';
+        const getCheck = (name) => {
+            const checked = Array.from(document.querySelectorAll(`input[name="${name}"]:checked`));
+            return checked.map(el => el.value).join(', ') || '선택안함';
+        };
 
-        const text = `[STUDIO DW 신청서]\n■ 채널: ${getVal('channel')}\n■ 원곡: ${getVal('original_link')}\n■ 용도: ${getVal('usage')}\n■ 타입: ${getCheck('type')}\n■ 옵션: ${getCheck('opt')}\n■ 연출: ${getVal('credit')}`;
+        const text = `[STUDIO DW 신청서]
+■ 채널: ${getVal('channel')}
+■ 원곡: ${getVal('original_link')}
+■ 용도: ${getVal('usage')}
+■ 타입: ${getCheck('type')}
+■ 언어: ${getCheck('lang')}
+■ 옵션: ${getCheck('opt')}
+■ 마감일: ${getVal('deadline')}
+■ 연출/크레딧: 
+${getVal('credit')}`;
 
         try {
-            // [방법 1] 최신 클립보드 API 시도
             await navigator.clipboard.writeText(text);
             alert('양식이 복사되었습니다! 문의창에 붙여넣어 주세요.');
+            document.getElementById('fallback-area').style.display = 'none';
         } catch (err) {
-            // [방법 2] 보안 차단 시 수동 복사용 창 띄우기
             document.getElementById('fallback-area').style.display = 'block';
             const resArea = document.getElementById('result-text');
             resArea.value = text;
             resArea.select();
-            alert('보안 정책으로 자동 복사가 제한되었습니다. 하단에 생성된 텍스트를 복사해주세요!');
+            alert('보안 정책으로 자동 복사가 제한되었습니다. 아래에 생성된 텍스트를 직접 복사해주세요!');
         }
     }
 </script>
