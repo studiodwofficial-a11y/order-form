@@ -15,7 +15,7 @@
         
         * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Pretendard', 'Malgun Gothic', sans-serif; }
         
-        body { background-color: var(--bg); color: #fff; padding: 40px 20px; display: flex; justify-content: center; }
+        body { background-color: var(--bg); color: #fff; padding: 20px; display: flex; justify-content: center; }
         .container { max-width: 850px; width: 100%; }
 
         .form-container { 
@@ -24,48 +24,44 @@
                 radial-gradient(rgba(186, 218, 85, 0.12) 1px, transparent 1px),
                 linear-gradient(180deg, rgba(186, 218, 85, 0.03) 0%, rgba(0, 0, 0, 0) 100%);
             background-size: 22px 22px, 100% 100%;
-            padding: 60px;
+            padding: 40px;
             border: 1.5px solid #2a2a26;
             border-radius: 35px;
             box-shadow: 0 30px 60px rgba(0,0,0,0.7);
         }
 
-        .header { margin-bottom: 50px; }
-        .header h1 { color: var(--input-bg); font-size: 38px; font-weight: 900; line-height: 1.1; letter-spacing: -1.5px; margin-bottom: 12px; }
-        .header p { color: #fff; font-size: 16px; font-weight: 500; opacity: 0.8; }
+        .header { margin-bottom: 40px; }
+        .header h1 { color: var(--input-bg); font-size: 32px; font-weight: 900; line-height: 1.1; letter-spacing: -1.5px; margin-bottom: 10px; }
+        .header p { color: #fff; font-size: 15px; font-weight: 500; opacity: 0.8; }
 
-        .form-group { margin-bottom: 35px; }
-        .form-group label.title { display: block; color: var(--point); font-weight: 700; margin-bottom: 15px; font-size: 16px; }
+        .form-group { margin-bottom: 30px; }
+        .form-group label.title { display: block; color: var(--point); font-weight: 700; margin-bottom: 12px; font-size: 15px; }
         .form-group label.title span { color: var(--point); opacity: 0.7; font-weight: 400; font-size: 13px; margin-left: 5px; }
 
         input[type="text"], input[type="date"], textarea {
-            width: 100%; padding: 16px 25px; background: var(--input-bg); border: 2px solid transparent;
-            border-radius: 50px; font-size: 15px; color: #1a1a1a; outline: none; transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            width: 100%; padding: 14px 20px; background: var(--input-bg); border: 2px solid transparent;
+            border-radius: 50px; font-size: 14px; color: #1a1a1a; outline: none; transition: 0.3s;
         }
-        textarea { border-radius: 25px; min-height: 140px; resize: vertical; line-height: 1.6; }
-        input:focus, textarea:focus { background: #fff; border-color: var(--glow); box-shadow: 0 0 20px rgba(220, 240, 115, 0.6); transform: translateY(-2px); }
+        textarea { border-radius: 20px; min-height: 120px; resize: vertical; line-height: 1.6; }
+        input:focus, textarea:focus { background: #fff; border-color: var(--glow); box-shadow: 0 0 15px rgba(220, 240, 115, 0.5); }
 
-        .checkbox-group { display: flex; flex-wrap: wrap; gap: 15px 30px; padding: 5px; }
-        .checkbox-label { display: flex; align-items: center; cursor: pointer; font-size: 15px; color: #eee; }
-        input[type="checkbox"], input[type="radio"] { appearance: none; width: 20px; height: 20px; background: #fdfdf9; margin-right: 10px; cursor: pointer; position: relative; }
+        .checkbox-group { display: flex; flex-wrap: wrap; gap: 10px 20px; padding: 5px; }
+        .checkbox-label { display: flex; align-items: center; cursor: pointer; font-size: 14px; color: #eee; }
+        input[type="checkbox"], input[type="radio"] { appearance: none; -webkit-appearance: none; width: 18px; height: 18px; background: #fdfdf9; margin-right: 8px; cursor: pointer; position: relative; }
         input[type="radio"] { border-radius: 50%; }
-        input[type="checkbox"] { border-radius: 5px; }
+        input[type="checkbox"] { border-radius: 4px; }
         input:checked { background-color: var(--point); }
-        input:checked::after { content: '✔'; position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); color: #1a1a1a; font-size: 13px; font-weight: 900; }
+        input:checked::after { content: '✔'; position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); color: #1a1a1a; font-size: 11px; font-weight: 900; }
 
-        .submit-area { text-align: center; margin-top: 60px; }
+        .submit-area { text-align: center; margin-top: 40px; }
         .submit-btn {
             background: linear-gradient(to bottom, #dcf073 0%, #a2c629 100%);
-            color: #1a1a1a; border: none; padding: 18px 90px; font-size: 26px; font-weight: 900; border-radius: 60px;
-            cursor: pointer; transition: all 0.3s; box-shadow: 0 8px 0 #6e881c, 0 15px 30px rgba(162, 198, 41, 0.4);
+            color: #1a1a1a; border: none; padding: 16px 60px; font-size: 22px; font-weight: 900; border-radius: 50px;
+            cursor: pointer; transition: 0.2s; box-shadow: 0 6px 0 #6e881c;
         }
-        .submit-btn:active { transform: translateY(6px); box-shadow: 0 2px 0 #6e881c; }
+        .submit-btn:active { transform: translateY(4px); box-shadow: 0 2px 0 #6e881c; }
 
-        #fallback-area { display: none; margin-top: 30px; animation: fadeIn 0.5s; }
-        #result-text { width: 100%; height: 200px; background: #222; color: #fff; border: 1px solid var(--point); border-radius: 15px; padding: 15px; font-size: 14px; margin-top: 10px; line-height: 1.5; }
-        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
-
-        @media (max-width: 600px) { .form-container { padding: 40px 25px; } .header h1 { font-size: 28px; } .submit-btn { width: 100%; padding: 18px 0; } }
+        @media (max-width: 600px) { .form-container { padding: 30px 20px; } .header h1 { font-size: 24px; } .submit-btn { width: 100%; } }
     </style>
 </head>
 <body>
@@ -79,7 +75,7 @@
 
         <form id="orderForm">
             <div class="form-group">
-                <label class="title">업로드 채널 <span>(링크) - 포트폴리오 추가를 위해 요청드리고 있습니다.</span></label>
+                <label class="title">업로드 채널 <span>(링크)</span></label>
                 <input type="text" id="channel" placeholder="채널 링크를 입력해주세요">
             </div>
 
@@ -113,12 +109,12 @@
             </div>
 
             <div class="form-group">
-                <label class="title">추가옵션 <span>(중복 선택 가능)</span></label>
+                <label class="title">추가옵션 <span>(중복 가능)</span></label>
                 <div class="checkbox-group">
                     <label class="checkbox-label"><input type="checkbox" name="opt" value="썸네일"> 썸네일</label>
                     <label class="checkbox-label"><input type="checkbox" name="opt" value="Live2D"> Live2D</label>
-                    <label class="checkbox-label"><input type="checkbox" name="opt" value="배경2D"> 배경추가(2D)</label>
-                    <label class="checkbox-label"><input type="checkbox" name="opt" value="배경3D"> 배경추가(3D)</label>
+                    <label class="checkbox-label"><input type="checkbox" name="opt" value="배경2D"> 배경(2D)</label>
+                    <label class="checkbox-label"><input type="checkbox" name="opt" value="배경3D"> 배경(3D)</label>
                     <label class="checkbox-label"><input type="checkbox" name="opt" value="수익창출"> 수익창출</label>
                     <label class="checkbox-label"><input type="checkbox" name="opt" value="빠른마감"> 빠른마감</label>
                     <label class="checkbox-label"><input type="checkbox" name="opt" value="숏폼"> SNS/숏폼</label>
@@ -132,7 +128,7 @@
 
             <div class="form-group">
                 <label class="title">희망 연출 / 크레딧</label>
-                <textarea id="credit" placeholder="연출 희망 사항이나 크레딧 정보를 입력해주세요."></textarea>
+                <textarea id="credit" placeholder="연출 희망 사항이나 크레딧 정보"></textarea>
             </div>
 
             <div class="form-group">
@@ -143,52 +139,44 @@
 
             <div class="submit-area">
                 <button type="button" class="submit-btn" onclick="copyResult()">작성완료</button>
-                <p style="color: #666; font-size: 14px; margin-top: 20px;">※ 버튼 클릭 시 양식이 복사됩니다.</p>
-                
-                <div id="fallback-area">
-                    <p style="color: var(--glow); font-size: 14px; font-weight: bold;">자동 복사가 차단되었습니다. 아래 내용을 직접 복사해주세요!</p>
-                    <textarea id="result-text" readonly></textarea>
-                </div>
+                <p style="color: #666; font-size: 13px; margin-top: 15px;">※ 버튼 클릭 시 양식이 복사됩니다.</p>
             </div>
         </form>
     </div>
 </div>
 
 <script>
-    async function copyResult() {
+    function copyResult() {
         if(!document.getElementById('agree').checked) {
-            alert('안내사항 동의에 체크해주셔야 양식 복사가 가능합니다.'); 
+            alert('안내사항 동의에 체크해주세요!'); 
             return; 
         }
 
-        const getVal = (id) => document.getElementById(id).value || '미입력';
-        const getCheck = (name) => {
-            const checked = Array.from(document.querySelectorAll(`input[name="${name}"]:checked`));
-            return checked.map(el => el.value).join(', ') || '선택안함';
+        var getVal = function(id) { return document.getElementById(id).value || '미입력'; };
+        var getCheck = function(name) {
+            var checked = Array.from(document.querySelectorAll('input[name="' + name + '"]:checked'));
+            return checked.map(function(el) { return el.value; }).join(', ') || '선택안함';
         };
 
-        const text = `[STUDIO DW 신청서]
-■ 채널: ${getVal('channel')}
-■ 원곡: ${getVal('original_link')}
-■ 용도: ${getVal('usage')}
-■ 타입: ${getCheck('type')}
-■ 언어: ${getCheck('lang')}
-■ 옵션: ${getCheck('opt')}
-■ 마감일: ${getVal('deadline')}
-■ 연출/크레딧: 
-${getVal('credit')}`;
+        var text = "[STUDIO DW 신청서]\n" +
+                   "■ 채널: " + getVal('channel') + "\n" +
+                   "■ 원곡: " + getVal('original_link') + "\n" +
+                   "■ 용도: " + getVal('usage') + "\n" +
+                   "■ 타입: " + getCheck('type') + "\n" +
+                   "■ 언어: " + getCheck('lang') + "\n" +
+                   "■ 옵션: " + getCheck('opt') + "\n" +
+                   "■ 마감일: " + getVal('deadline') + "\n" +
+                   "■ 연출/크레딧: \n" + getVal('credit');
 
-        try {
-            await navigator.clipboard.writeText(text);
-            alert('양식이 복사되었습니다! 문의창에 붙여넣어 주세요.');
-            document.getElementById('fallback-area').style.display = 'none';
-        } catch (err) {
-            document.getElementById('fallback-area').style.display = 'block';
-            const resArea = document.getElementById('result-text');
-            resArea.value = text;
-            resArea.select();
-            alert('보안 정책으로 자동 복사가 제한되었습니다. 아래에 생성된 텍스트를 직접 복사해주세요!');
-        }
+        // [복구] 레퍼런스에서 사용했던 구식 방식 그대로 적용
+        var t = document.createElement("textarea");
+        document.body.appendChild(t);
+        t.value = text;
+        t.select();
+        document.execCommand('copy');
+        document.body.removeChild(t);
+        
+        alert('양식이 복사되었습니다! 아트머그 문의창에 붙여넣어 주세요.');
     }
 </script>
 </body>
