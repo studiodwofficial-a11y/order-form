@@ -14,7 +14,6 @@
         
         * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Pretendard', sans-serif; }
         
-        /* [수정] body 여백을 0으로 만들어 iframe에 딱 붙게 함 */
         body { background-color: var(--bg); color: #fff; padding: 0; display: flex; justify-content: center; }
         .container { max-width: 850px; width: 100%; }
 
@@ -22,12 +21,11 @@
             background-color: var(--card);
             background-image: radial-gradient(rgba(186, 218, 85, 0.1) 1px, transparent 1px);
             background-size: 20px 20px;
-            /* [수정] 상하 패딩을 60px -> 30px로 줄임 */
             padding: 30px 40px; 
             border: 1px solid #2a2a26;
             border-radius: 30px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
-            /* [수정] 하단 마진 제거 */
+            /* [수정] 그림자 제거 */
+            box-shadow: none; 
             margin-bottom: 0; 
         }
 
@@ -71,7 +69,7 @@
             </div>
             <form id="orderForm">
                 <div class="form-group">
-                    <label class="title">업로드 채널 <span>(링크)</span></label>
+                    <label class="title">업로드 채널 <span>(링크) - 포트폴리오 추가를 위해 요청드리고 있습니다.</span></label>
                     <input type="text" id="channel" placeholder="채널 링크">
                 </div>
                 <div class="form-group">
@@ -100,7 +98,7 @@
                     </div>
                 </div>
                 <div class="form-group">
-                    <label class="title">추가옵션</label>
+                    <label class="title">추가옵션 <span>(중복 가능)</span></label>
                     <div class="checkbox-group">
                         <label class="checkbox-label"><input type="checkbox" name="opt" value="썸네일"> 썸네일</label>
                         <label class="checkbox-label"><input type="checkbox" name="opt" value="Live2D"> Live2D</label>
@@ -117,7 +115,7 @@
                 </div>
                 <div class="form-group">
                     <label class="title">희망 연출 / 크레딧</label>
-                    <textarea id="credit" placeholder="희망 사항 입력"></textarea>
+                    <textarea id="credit" placeholder="연출 희망 사항이나 크레딧 정보"></textarea>
                 </div>
                 <div class="form-group">
                     <label class="checkbox-label" style="color: var(--point); font-weight: bold;">
@@ -126,6 +124,7 @@
                 </div>
                 <div class="submit-area">
                     <button type="button" class="submit-btn" onclick="copyResult()">작성완료</button>
+                    <p style="color: #666; font-size: 13px; margin-top: 15px;">※ 버튼 클릭 시 양식이 복사됩니다.</p>
                 </div>
             </form>
         </div>
@@ -144,7 +143,7 @@
             t.value = text; t.select();
             document.execCommand('copy');
             document.body.removeChild(t);
-            alert('양식이 복사되었습니다!');
+            alert('양식이 복사되었습니다! 아트머그 문의창에 붙여넣어 주세요.');
         }
     </script>
 </body>
