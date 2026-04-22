@@ -13,10 +13,12 @@
             --input-bg: #fdfdf9; 
         }
         
-        * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Pretendard', 'Malgun Gothic', sans-serif; }
+        * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Pretendard', 'Malgun Gothic', sans-serif; scroll-behavior: smooth; }
         
         body { background-color: var(--bg); color: #fff; padding: 20px; display: flex; justify-content: center; }
-        .container { max-width: 850px; width: 100%; }
+        
+        /* 가로 너비 1180px 고정 */
+        .container { max-width: 1180px; width: 100%; }
 
         .form-container { 
             background-color: var(--card);
@@ -24,29 +26,31 @@
                 radial-gradient(rgba(186, 218, 85, 0.12) 1px, transparent 1px),
                 linear-gradient(180deg, rgba(186, 218, 85, 0.03) 0%, rgba(0, 0, 0, 0) 100%);
             background-size: 22px 22px, 100% 100%;
-            padding: 40px;
+            padding: 50px 60px;
             border: 1.5px solid #2a2a26;
             border-radius: 35px;
-            /* 외곽 그림자만 제거 */
             box-shadow: none; 
         }
 
-        .header { margin-bottom: 40px; }
-        .header h1 { color: var(--input-bg); font-size: 32px; font-weight: 900; line-height: 1.1; letter-spacing: -1.5px; margin-bottom: 10px; }
-        .header p { color: #fff; font-size: 15px; font-weight: 500; opacity: 0.8; }
+        .header { margin-bottom: 45px; display: flex; align-items: center; gap: 20px; }
+        .header-logo { width: 60px; height: 60px; object-fit: contain; }
+        .header-text { display: flex; flex-direction: column; }
+        
+        .header h1 { color: var(--input-bg); font-size: 36px; font-weight: 900; line-height: 1.1; letter-spacing: -1.5px; }
+        .header p { color: #fff; font-size: 16px; font-weight: 500; opacity: 0.8; margin-top: 5px; }
 
         .form-group { margin-bottom: 30px; }
         .form-group label.title { display: block; color: var(--point); font-weight: 700; margin-bottom: 12px; font-size: 15px; }
         .form-group label.title span { color: var(--point); opacity: 0.7; font-weight: 400; font-size: 13px; margin-left: 5px; }
 
         input[type="text"], input[type="date"], textarea {
-            width: 100%; padding: 14px 20px; background: var(--input-bg); border: 2px solid transparent;
-            border-radius: 50px; font-size: 14px; color: #1a1a1a; outline: none; 
+            width: 100%; padding: 16px 22px; background: var(--input-bg); border: 2px solid transparent;
+            border-radius: 50px; font-size: 15px; color: #1a1a1a; outline: none; 
             transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
         }
-        textarea { border-radius: 20px; min-height: 120px; resize: vertical; line-height: 1.6; }
+        textarea { border-radius: 20px; min-height: 140px; resize: vertical; line-height: 1.6; }
 
-        /* [복구] 포커스 시 네온 글로우 효과 - 그림자가 아니라 빛나는 효과입니다 */
+        /* 포커스 시 글로우 효과 */
         input:focus, textarea:focus { 
             background: #fff; 
             border-color: var(--glow); 
@@ -54,31 +58,33 @@
             transform: translateY(-2px);
         }
 
-        .checkbox-group { display: flex; flex-wrap: wrap; gap: 10px 20px; padding: 5px; }
+        .checkbox-group { display: flex; flex-wrap: wrap; gap: 12px 25px; padding: 5px; }
         .checkbox-label { display: flex; align-items: center; cursor: pointer; font-size: 14px; color: #eee; transition: 0.2s; }
         .checkbox-label:hover { color: var(--glow); }
 
-        input[type="checkbox"], input[type="radio"] { appearance: none; -webkit-appearance: none; width: 18px; height: 18px; background: #fdfdf9; margin-right: 8px; cursor: pointer; position: relative; transition: 0.2s; }
+        input[type="checkbox"], input[type="radio"] { appearance: none; -webkit-appearance: none; width: 19px; height: 19px; background: #fdfdf9; margin-right: 10px; cursor: pointer; position: relative; transition: 0.2s; }
         input[type="radio"] { border-radius: 50%; }
-        input[type="checkbox"] { border-radius: 4px; }
+        input[type="checkbox"] { border-radius: 5px; }
         input:checked { background-color: var(--point); box-shadow: 0 0 8px rgba(186, 218, 85, 0.4); }
         input:checked::after { content: '✔'; position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); color: #1a1a1a; font-size: 11px; font-weight: 900; }
 
-        .submit-area { text-align: center; margin-top: 40px; }
+        .submit-area { text-align: center; margin-top: 45px; }
         .submit-btn {
             background: linear-gradient(to bottom, #dcf073 0%, #a2c629 100%);
-            color: #1a1a1a; border: none; padding: 16px 60px; font-size: 22px; font-weight: 900; border-radius: 50px;
+            color: #1a1a1a; border: none; padding: 18px 80px; font-size: 24px; font-weight: 900; border-radius: 60px;
             cursor: pointer; transition: 0.3s; box-shadow: 0 6px 0 #6e881c;
         }
         .submit-btn:hover { filter: brightness(1.1); }
         .submit-btn:active { transform: translateY(4px); box-shadow: 0 2px 0 #6e881c; }
 
-        /* [복구] 반응형 레이아웃 */
+        /* 안내사항 링크 스타일 */
+        .notice-link { color: var(--point); text-decoration: underline; cursor: pointer; font-weight: 800; }
+
         @media (max-width: 600px) { 
-            .form-container { padding: 30px 20px; } 
+            .form-container { padding: 35px 25px; } 
+            .header { flex-direction: column; align-items: flex-start; gap: 10px; }
             .header h1 { font-size: 26px; } 
             .submit-btn { width: 100%; padding: 16px 0; font-size: 20px; }
-            .checkbox-group { gap: 10px 15px; }
         }
     </style>
 </head>
@@ -87,8 +93,11 @@
 <div class="container">
     <div class="form-container">
         <div class="header">
-            <h1>Studio DW : Order Form</h1>
-            <p>“빠르고 쉽게 문의하세요”</p>
+            <img src="이미지_주소" alt="logo" class="header-logo">
+            <div class="header-text">
+                <h1>Studio DW : Order Form</h1>
+                <p>“빠르고 쉽게 문의하세요”</p>
+            </div>
         </div>
 
         <form id="orderForm">
@@ -108,7 +117,7 @@
             </div>
 
             <div class="form-group">
-                <label class="title">신청 타입</label>
+                <label class="title">신청 타입 (필수)</label>
                 <div class="checkbox-group">
                     <label class="checkbox-label"><input type="radio" name="type" value="스탠다드"> 스탠다드</label>
                     <label class="checkbox-label"><input type="radio" name="type" value="프리미엄"> 프리미엄</label>
@@ -118,7 +127,7 @@
             </div>
 
             <div class="form-group">
-                <label class="title">자막 언어</label>
+                <label class="title">자막 언어 (필수)</label>
                 <div class="checkbox-group">
                     <label class="checkbox-label"><input type="radio" name="lang" value="한국어"> 한국어</label>
                     <label class="checkbox-label"><input type="radio" name="lang" value="일본어"> 일본어</label>
@@ -151,7 +160,8 @@
 
             <div class="form-group">
                 <label class="checkbox-label" style="color: var(--point); font-weight: bold;">
-                    <input type="checkbox" id="agree"> 안내사항을 확인하고 이에 동의합니다. (하단이미지에 포함 되어있습니다)
+                    <input type="checkbox" id="agree"> 
+                    <span onclick="scrollToNotice()" class="notice-link">안내사항을 확인</span>하고 이에 동의합니다.
                 </label>
             </div>
 
@@ -164,25 +174,44 @@
 </div>
 
 <script>
+    // [추가] 아트머그 본문 이미지 구역으로 스크롤하는 함수
+    function scrollToNotice() {
+        const target = window.parent.document.querySelector('#v-pills-home');
+        if (target) {
+            target.scrollIntoView({ behavior: 'smooth' });
+        } else {
+            // 아이프레임 외부 접근이 차단될 경우를 대비한 대체 스크롤 (페이지 하단으로)
+            window.parent.scrollTo({ top: 1200, behavior: 'smooth' });
+        }
+    }
+
     function copyResult() {
         if(!document.getElementById('agree').checked) {
             alert('안내사항 동의에 체크해주세요!'); 
             return; 
         }
 
-        var getVal = function(id) { return document.getElementById(id).value || '미입력'; };
         var getCheck = function(name) {
             var checked = Array.from(document.querySelectorAll('input[name="' + name + '"]:checked'));
-            return checked.map(function(el) { return el.value; }).join(', ') || '선택안함';
+            return checked.map(function(el) { return el.value; }).join(', ');
         };
+
+        var typeCheck = getCheck('type');
+        var langCheck = getCheck('lang');
+
+        if(!typeCheck) { alert('신청 타입을 선택해주세요!'); return; }
+        if(!langCheck) { alert('자막 언어를 선택해주세요!'); return; }
+
+        var getVal = function(id) { return document.getElementById(id).value || '미입력'; };
+        var optCheck = getCheck('opt') || '선택안함';
 
         var text = "[STUDIO DW 신청서]\n" +
                    "■ 채널: " + getVal('channel') + "\n" +
                    "■ 원곡: " + getVal('original_link') + "\n" +
                    "■ 용도: " + getVal('usage') + "\n" +
-                   "■ 타입: " + getCheck('type') + "\n" +
-                   "■ 언어: " + getCheck('lang') + "\n" +
-                   "■ 옵션: " + getCheck('opt') + "\n" +
+                   "■ 타입: " + typeCheck + "\n" +
+                   "■ 언어: " + langCheck + "\n" +
+                   "■ 옵션: " + optCheck + "\n" +
                    "■ 마감일: " + getVal('deadline') + "\n" +
                    "■ 연출/크레딧: \n" + getVal('credit');
 
