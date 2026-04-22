@@ -14,9 +14,7 @@
         }
         
         * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Pretendard', sans-serif; }
-        
         body { background-color: var(--bg); color: #fff; padding: 20px; display: flex; justify-content: center; }
-        
         .container { max-width: 1180px; width: 100%; margin: 0 auto; }
 
         .form-container { 
@@ -36,41 +34,40 @@
         .form-group { margin-bottom: 30px; width: 100%; }
         .form-group label.title { display: block; color: var(--point); font-weight: 700; margin-bottom: 12px; font-size: 15px; }
 
-        /* [모션 복구] 입력창 기본 및 호버/포커스 효과 */
+        /* [텍스트박스 모션 유지] */
         input[type="text"], input[type="date"], textarea {
             width: 100%; padding: 16px 22px; background: var(--input-bg); border: 2px solid transparent;
             border-radius: 50px; font-size: 15px; color: #1a1a1a; outline: none; 
-            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1); /* 부드러운 가속도 추가 */
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
         }
         textarea { border-radius: 20px; min-height: 140px; resize: vertical; }
-
-        /* 마우스 올렸을 때 살짝 반응 */
-        input:hover, textarea:hover { transform: translateY(-2px); }
-
-        /* 클릭(포커스) 시 위로 떠오르며 글로우 발생 */
-        input:focus, textarea:focus { 
-            background: #fff;
-            transform: translateY(-4px); 
-            border-color: var(--glow); 
-            box-shadow: 0 10px 20px rgba(220, 240, 115, 0.3); 
+        input[type="text"]:hover, textarea:hover { transform: translateY(-2px); }
+        input[type="text"]:focus, textarea:focus { 
+            background: #fff; transform: translateY(-4px); 
+            border-color: var(--glow); box-shadow: 0 10px 20px rgba(220, 240, 115, 0.3); 
         }
 
+        /* [체크박스/라디오 모션 삭제] 오직 색상만 변경 */
         .checkbox-group { display: flex; flex-wrap: wrap; gap: 12px 25px; }
-        .checkbox-label { display: flex; align-items: center; cursor: pointer; font-size: 14px; color: #eee; transition: 0.2s; }
-        .checkbox-label:hover { color: var(--glow); }
-
-        input[type="checkbox"], input[type="radio"] { appearance: none; width: 19px; height: 19px; background: #fdfdf9; margin-right: 10px; cursor: pointer; position: relative; transition: 0.2s; }
+        .checkbox-label { display: flex; align-items: center; cursor: pointer; font-size: 14px; color: #eee; }
+        
+        input[type="checkbox"], input[type="radio"] { 
+            appearance: none; width: 19px; height: 19px; background: #fdfdf9; 
+            margin-right: 10px; cursor: pointer; position: relative; 
+            /* 모션 관련 transform 삭제 */
+        }
         input[type="radio"] { border-radius: 50%; }
-        input:checked { background-color: var(--point); box-shadow: 0 0 10px rgba(186, 218, 85, 0.5); }
-        input:checked::after { content: '✔'; position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); color: #1a1a1a; font-size: 11px; font-weight: 900; }
+        input:checked { background-color: var(--point); }
+        input:checked::after { 
+            content: '✔'; position: absolute; top: 50%; left: 50%; 
+            transform: translate(-50%, -50%); color: #1a1a1a; font-size: 11px; font-weight: 900; 
+        }
 
-        /* [모션 복구] 작성완료 버튼 애니메이션 */
         .submit-area { text-align: center; margin-top: 45px; width: 100%; }
         .submit-btn {
             background: linear-gradient(to bottom, #dcf073 0%, #a2c629 100%);
             color: #1a1a1a; border: none; padding: 18px 80px; font-size: 24px; font-weight: 900; border-radius: 60px;
-            cursor: pointer; box-shadow: 0 6px 0 #6e881c;
-            transition: 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+            cursor: pointer; box-shadow: 0 6px 0 #6e881c; transition: 0.2s;
         }
         .submit-btn:hover { transform: translateY(-2px); filter: brightness(1.05); }
         .submit-btn:active { transform: translateY(4px); box-shadow: 0 2px 0 #6e881c; }
@@ -95,8 +92,8 @@
 
         <form id="orderForm">
             <div class="form-group"><label class="title">업로드 채널 (링크)</label><input type="text" id="channel" placeholder="채널 링크"></div>
-            <div class="form-group"><label class="title">원곡 링크</label><input type="text" id="original_link" placeholder="Youtube 등"></div>
-            <div class="form-group"><label class="title">사용 용도</label><input type="text" id="usage" placeholder="용도 입력"></div>
+            <div class="form-group"><label class="title">원곡 링크</label><input type="text" id="original_link" placeholder="참고 링크"></div>
+            <div class="form-group"><label class="title">사용 용도</label><input type="text" id="usage" placeholder="Youtube / 방송 송출 등"></div>
 
             <div class="form-group">
                 <label class="title">신청 타입 (필수)</label>
@@ -135,7 +132,7 @@
 
             <div class="form-group" style="background: rgba(186, 218, 85, 0.05); padding: 20px; border-radius: 15px; border: 1px dashed var(--point);">
                 <p style="margin-bottom: 12px;">
-                    <span class="notice-link" onclick="window.parent.scrollTo({top: 8500, behavior: 'smooth'});">👉 [이곳을 클릭하여 안내사항 확인하기]</span>
+                    <span class="notice-link" onclick="window.open('https://artmug.kr/index.php?channel=view&uid=본인의UID')">👉 [이곳을 클릭하여 안내사항 확인하기]</span>
                 </p>
                 <label class="checkbox-label" style="font-weight: bold; color: var(--point);">
                     <input type="checkbox" id="agree"> 위 안내사항을 확인하였으며 동의합니다.
