@@ -13,70 +13,76 @@
             --input-bg: #fdfdf9; 
         }
         
-        * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Pretendard', sans-serif; }
+        * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Pretendard', 'Malgun Gothic', sans-serif; }
+        
         body { background-color: var(--bg); color: #fff; padding: 20px; display: flex; justify-content: center; }
-        .container { max-width: 1180px; width: 100%; margin: 0 auto; }
+        
+        /* [수정] 가로 너비를 1180px로 고정 (반응형 대응 포함) */
+        .container { max-width: 1180px; width: 100%; }
 
         .form-container { 
             background-color: var(--card);
-            background-image: radial-gradient(rgba(186, 218, 85, 0.12) 1px, transparent 1px);
-            background-size: 22px 22px;
-            padding: 50px 60px;
+            background-image: 
+                radial-gradient(rgba(186, 218, 85, 0.12) 1px, transparent 1px),
+                linear-gradient(180deg, rgba(186, 218, 85, 0.03) 0%, rgba(0, 0, 0, 0) 100%);
+            background-size: 22px 22px, 100% 100%;
+            padding: 50px 60px; /* 너비가 넓어진 만큼 패딩도 약간 조절 */
             border: 1.5px solid #2a2a26;
             border-radius: 35px;
-            width: 100%;
+            box-shadow: none; 
         }
 
-        .header { margin-bottom: 45px; display: flex; align-items: center; gap: 20px; flex-wrap: wrap; }
-        .header-logo { width: 60px; height: 60px; object-fit: contain; }
-        .header h1 { color: var(--input-bg); font-size: 36px; font-weight: 900; letter-spacing: -1.5px; }
+        /* [추가] 헤더 정렬 및 이미지 설정 */
+        .header { margin-bottom: 45px; display: flex; align-items: center; gap: 20px; }
+        .header-logo { width: 60px; height: 60px; object-fit: contain; } /* 이미지 크기 조절 */
+        .header-text { display: flex; flex-direction: column; }
+        
+        .header h1 { color: var(--input-bg); font-size: 36px; font-weight: 900; line-height: 1.1; letter-spacing: -1.5px; }
+        .header p { color: #fff; font-size: 16px; font-weight: 500; opacity: 0.8; margin-top: 5px; }
 
-        .form-group { margin-bottom: 30px; width: 100%; }
+        .form-group { margin-bottom: 30px; }
         .form-group label.title { display: block; color: var(--point); font-weight: 700; margin-bottom: 12px; font-size: 15px; }
+        .form-group label.title span { color: var(--point); opacity: 0.7; font-weight: 400; font-size: 13px; margin-left: 5px; }
 
-        /* [텍스트박스 모션 유지] */
         input[type="text"], input[type="date"], textarea {
             width: 100%; padding: 16px 22px; background: var(--input-bg); border: 2px solid transparent;
             border-radius: 50px; font-size: 15px; color: #1a1a1a; outline: none; 
             transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
         }
-        textarea { border-radius: 20px; min-height: 140px; resize: vertical; }
-        input[type="text"]:hover, textarea:hover { transform: translateY(-2px); }
-        input[type="text"]:focus, textarea:focus { 
-            background: #fff; transform: translateY(-4px); 
-            border-color: var(--glow); box-shadow: 0 10px 20px rgba(220, 240, 115, 0.3); 
+        textarea { border-radius: 20px; min-height: 140px; resize: vertical; line-height: 1.6; }
+
+        /* [유지] 글로우 효과 */
+        input:focus, textarea:focus { 
+            background: #fff; 
+            border-color: var(--glow); 
+            box-shadow: 0 0 15px rgba(220, 240, 115, 0.6); 
+            transform: translateY(-2px);
         }
 
-        /* [체크박스/라디오 모션 삭제] 오직 색상만 변경 */
-        .checkbox-group { display: flex; flex-wrap: wrap; gap: 12px 25px; }
-        .checkbox-label { display: flex; align-items: center; cursor: pointer; font-size: 14px; color: #eee; }
-        
-        input[type="checkbox"], input[type="radio"] { 
-            appearance: none; width: 19px; height: 19px; background: #fdfdf9; 
-            margin-right: 10px; cursor: pointer; position: relative; 
-            /* 모션 관련 transform 삭제 */
-        }
+        .checkbox-group { display: flex; flex-wrap: wrap; gap: 12px 25px; padding: 5px; }
+        .checkbox-label { display: flex; align-items: center; cursor: pointer; font-size: 14px; color: #eee; transition: 0.2s; }
+        .checkbox-label:hover { color: var(--glow); }
+
+        input[type="checkbox"], input[type="radio"] { appearance: none; -webkit-appearance: none; width: 19px; height: 19px; background: #fdfdf9; margin-right: 10px; cursor: pointer; position: relative; transition: 0.2s; }
         input[type="radio"] { border-radius: 50%; }
-        input:checked { background-color: var(--point); }
-        input:checked::after { 
-            content: '✔'; position: absolute; top: 50%; left: 50%; 
-            transform: translate(-50%, -50%); color: #1a1a1a; font-size: 11px; font-weight: 900; 
-        }
+        input[type="checkbox"] { border-radius: 5px; }
+        input:checked { background-color: var(--point); box-shadow: 0 0 8px rgba(186, 218, 85, 0.4); }
+        input:checked::after { content: '✔'; position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); color: #1a1a1a; font-size: 11px; font-weight: 900; }
 
-        .submit-area { text-align: center; margin-top: 45px; width: 100%; }
+        .submit-area { text-align: center; margin-top: 45px; }
         .submit-btn {
             background: linear-gradient(to bottom, #dcf073 0%, #a2c629 100%);
             color: #1a1a1a; border: none; padding: 18px 80px; font-size: 24px; font-weight: 900; border-radius: 60px;
-            cursor: pointer; box-shadow: 0 6px 0 #6e881c; transition: 0.2s;
+            cursor: pointer; transition: 0.3s; box-shadow: 0 6px 0 #6e881c;
         }
-        .submit-btn:hover { transform: translateY(-2px); filter: brightness(1.05); }
+        .submit-btn:hover { filter: brightness(1.1); }
         .submit-btn:active { transform: translateY(4px); box-shadow: 0 2px 0 #6e881c; }
 
-        .notice-link { color: var(--point); text-decoration: underline; cursor: pointer; font-weight: 800; }
-
-        @media (max-width: 768px) {
-            .form-container { padding: 30px 20px; }
-            .header h1 { font-size: 26px; }
+        /* [유지] 반응형 레이아웃 */
+        @media (max-width: 600px) { 
+            .form-container { padding: 35px 25px; } 
+            .header { flex-direction: column; align-items: flex-start; gap: 10px; }
+            .header h1 { font-size: 26px; } 
             .submit-btn { width: 100%; padding: 16px 0; font-size: 20px; }
         }
     </style>
@@ -86,17 +92,31 @@
 <div class="container">
     <div class="form-container">
         <div class="header">
-            <img src="본인_로고_주소" alt="logo" class="header-logo">
-            <h1>Studio DW : Order Form</h1>
+            <img src="이미지_주소_여기에_넣으세요" alt="logo" class="header-logo">
+            <div class="header-text">
+                <h1>Studio DW : Order Form</h1>
+                <p>“빠르고 쉽게 문의하세요”</p>
+            </div>
         </div>
 
         <form id="orderForm">
-            <div class="form-group"><label class="title">업로드 채널 (링크)</label><input type="text" id="channel" placeholder="채널 링크"></div>
-            <div class="form-group"><label class="title">원곡 링크</label><input type="text" id="original_link" placeholder="참고 링크"></div>
-            <div class="form-group"><label class="title">사용 용도</label><input type="text" id="usage" placeholder="Youtube / 방송 송출 등"></div>
+            <div class="form-group">
+                <label class="title">업로드 채널 <span>(링크)</span></label>
+                <input type="text" id="channel" placeholder="채널 링크를 입력해주세요">
+            </div>
 
             <div class="form-group">
-                <label class="title">신청 타입 (필수)</label>
+                <label class="title">원곡 링크 <span>(Youtube 등)</span></label>
+                <input type="text" id="original_link" placeholder="참고 링크를 입력해주세요">
+            </div>
+
+            <div class="form-group">
+                <label class="title">사용 용도</label>
+                <input type="text" id="usage" placeholder="Youtube / 생방송(soop, 치지직, youtube 등)송출 / 오프라인 등">
+            </div>
+
+            <div class="form-group">
+                <label class="title">신청 타입</label>
                 <div class="checkbox-group">
                     <label class="checkbox-label"><input type="radio" name="type" value="스탠다드"> 스탠다드</label>
                     <label class="checkbox-label"><input type="radio" name="type" value="프리미엄"> 프리미엄</label>
@@ -106,7 +126,7 @@
             </div>
 
             <div class="form-group">
-                <label class="title">자막 언어 (필수)</label>
+                <label class="title">자막 언어</label>
                 <div class="checkbox-group">
                     <label class="checkbox-label"><input type="radio" name="lang" value="한국어"> 한국어</label>
                     <label class="checkbox-label"><input type="radio" name="lang" value="일본어"> 일본어</label>
@@ -115,7 +135,7 @@
             </div>
 
             <div class="form-group">
-                <label class="title">추가옵션 (중복 가능)</label>
+                <label class="title">추가옵션 <span>(중복 가능)</span></label>
                 <div class="checkbox-group">
                     <label class="checkbox-label"><input type="checkbox" name="opt" value="썸네일"> 썸네일</label>
                     <label class="checkbox-label"><input type="checkbox" name="opt" value="Live2D"> Live2D</label>
@@ -127,20 +147,25 @@
                 </div>
             </div>
 
-            <div class="form-group"><label class="title">희망 마감일</label><input type="date" id="deadline"></div>
-            <div class="form-group"><label class="title">희망 연출 / 크레딧</label><textarea id="credit" placeholder="상세 요청사항"></textarea></div>
+            <div class="form-group">
+                <label class="title">희망 마감일</label>
+                <input type="date" id="deadline">
+            </div>
 
-            <div class="form-group" style="background: rgba(186, 218, 85, 0.05); padding: 20px; border-radius: 15px; border: 1px dashed var(--point);">
-                <p style="margin-bottom: 12px;">
-                    <span class="notice-link" onclick="window.open('https://artmug.kr/index.php?channel=view&uid=본인의UID')">👉 [이곳을 클릭하여 안내사항 확인하기]</span>
-                </p>
-                <label class="checkbox-label" style="font-weight: bold; color: var(--point);">
-                    <input type="checkbox" id="agree"> 위 안내사항을 확인하였으며 동의합니다.
+            <div class="form-group">
+                <label class="title">희망 연출 / 크레딧</label>
+                <textarea id="credit" placeholder="연출 희망 사항이나 크레딧 정보"></textarea>
+            </div>
+
+            <div class="form-group">
+                <label class="checkbox-label" style="color: var(--point); font-weight: bold;">
+                    <input type="checkbox" id="agree"> 안내사항을 확인하고 이에 동의합니다. (하단이미지에 포함 되어있습니다)
                 </label>
             </div>
 
             <div class="submit-area">
                 <button type="button" class="submit-btn" onclick="copyResult()">작성완료</button>
+                <p style="color: #666; font-size: 13px; margin-top: 15px;">※ 버튼 클릭 시 양식이 복사됩니다.</p>
             </div>
         </form>
     </div>
@@ -148,14 +173,35 @@
 
 <script>
     function copyResult() {
-        if(!document.getElementById('agree').checked) { alert('안내사항 동의에 체크해주세요!'); return; }
-        var getCheck = (name) => Array.from(document.querySelectorAll('input[name="'+name+'"]:checked')).map(el => el.value).join(', ');
-        var type = getCheck('type'), lang = getCheck('lang'), opt = getCheck('opt') || '선택안함';
-        if(!type || !lang) { alert('필수 항목을 선택해주세요!'); return; }
-        var getVal = id => document.getElementById(id).value || '미입력';
-        var text = `[STUDIO DW 신청서]\n■ 채널: ${getVal('channel')}\n■ 원곡: ${getVal('original_link')}\n■ 용도: ${getVal('usage')}\n■ 타입: ${type}\n■ 언어: ${lang}\n■ 옵션: ${opt}\n■ 마감일: ${getVal('deadline')}\n■ 연출/크레딧:\n${getVal('credit')}`;
-        var t = document.createElement("textarea"); document.body.appendChild(t); t.value = text; t.select(); document.execCommand('copy'); document.body.removeChild(t);
-        alert('양식이 복사되었습니다!');
+        if(!document.getElementById('agree').checked) {
+            alert('안내사항 동의에 체크해주세요!'); 
+            return; 
+        }
+
+        var getVal = function(id) { return document.getElementById(id).value || '미입력'; };
+        var getCheck = function(name) {
+            var checked = Array.from(document.querySelectorAll('input[name="' + name + '"]:checked'));
+            return checked.map(function(el) { return el.value; }).join(', ') || '선택안함';
+        };
+
+        var text = "[STUDIO DW 신청서]\n" +
+                   "■ 채널: " + getVal('channel') + "\n" +
+                   "■ 원곡: " + getVal('original_link') + "\n" +
+                   "■ 용도: " + getVal('usage') + "\n" +
+                   "■ 타입: " + getCheck('type') + "\n" +
+                   "■ 언어: " + getCheck('lang') + "\n" +
+                   "■ 옵션: " + getCheck('opt') + "\n" +
+                   "■ 마감일: " + getVal('deadline') + "\n" +
+                   "■ 연출/크레딧: \n" + getVal('credit');
+
+        var t = document.createElement("textarea");
+        document.body.appendChild(t);
+        t.value = text;
+        t.select();
+        document.execCommand('copy');
+        document.body.removeChild(t);
+        
+        alert('양식이 복사되었습니다! 아트머그 문의창에 붙여넣어 주세요.');
     }
 </script>
 </body>
