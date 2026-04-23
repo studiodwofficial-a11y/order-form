@@ -17,7 +17,6 @@
         
         body { background-color: var(--bg); color: #fff; padding: 20px; display: flex; justify-content: center; }
         
-        /* [수정] 가로 너비를 1180px로 고정 (반응형 대응 포함) */
         .container { max-width: 1180px; width: 100%; }
 
         .form-container { 
@@ -26,15 +25,15 @@
                 radial-gradient(rgba(186, 218, 85, 0.12) 1px, transparent 1px),
                 linear-gradient(180deg, rgba(186, 218, 85, 0.03) 0%, rgba(0, 0, 0, 0) 100%);
             background-size: 22px 22px, 100% 100%;
-            padding: 50px 60px; /* 너비가 넓어진 만큼 패딩도 약간 조절 */
+            padding: 50px 60px; 
             border: 1.5px solid #2a2a26;
             border-radius: 35px;
             box-shadow: none; 
+            position: relative; /* 카피라이트 배치를 위한 기준점 */
         }
 
-        /* [추가] 헤더 정렬 및 이미지 설정 */
         .header { margin-bottom: 45px; display: flex; align-items: center; gap: 20px; }
-        .header-logo { width: 60px; height: 60px; object-fit: contain; } /* 이미지 크기 조절 */
+        .header-logo { width: 60px; height: 60px; object-fit: contain; } 
         .header-text { display: flex; flex-direction: column; }
         
         .header h1 { color: var(--input-bg); font-size: 36px; font-weight: 900; line-height: 1.1; letter-spacing: -1.5px; }
@@ -51,7 +50,6 @@
         }
         textarea { border-radius: 20px; min-height: 140px; resize: vertical; line-height: 1.6; }
 
-        /* [유지] 글로우 효과 */
         input:focus, textarea:focus { 
             background: #fff; 
             border-color: var(--glow); 
@@ -78,12 +76,19 @@
         .submit-btn:hover { filter: brightness(1.1); }
         .submit-btn:active { transform: translateY(4px); box-shadow: 0 2px 0 #6e881c; }
 
-        /* [유지] 반응형 레이아웃 */
+        /* 카피라이트 스타일 */
+        .copyright {
+            position: absolute; bottom: 30px; left: 40px; 
+            font-size: 10px; font-weight: 900; color: var(--point); 
+            opacity: 0.3; letter-spacing: 1px;
+        }
+
         @media (max-width: 600px) { 
             .form-container { padding: 35px 25px; } 
             .header { flex-direction: column; align-items: flex-start; gap: 10px; }
             .header h1 { font-size: 26px; } 
             .submit-btn { width: 100%; padding: 16px 0; font-size: 20px; }
+            .copyright { left: 25px; bottom: 15px; }
         }
     </style>
 </head>
@@ -168,6 +173,8 @@
                 <p style="color: #666; font-size: 13px; margin-top: 15px;">※ 버튼 클릭 시 양식이 복사됩니다.</p>
             </div>
         </form>
+        
+        <div class="copyright">©by STUDIO DW</div>
     </div>
 </div>
 
