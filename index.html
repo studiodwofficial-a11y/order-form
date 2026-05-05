@@ -206,10 +206,13 @@
         document.body.appendChild(t);
         t.value = text;
         t.select();
-        document.execCommand('copy');
+        try {
+            document.execCommand('copy');
+            alert('양식이 복사되었습니다! 아트머그 문의창에 붙여넣어 주세요.\n\n※ 내용 확인 없이 체크박스에 확인하신 경우 생기는 문제에 대한 책임은 의뢰인에게 있습니다.');
+        } catch (err) {
+            alert('복사에 실패했습니다. 직접 복사해주세요.');
+        }
         document.body.removeChild(t);
-        
-        alert('양식이 복사되었습니다! 아트머그 문의창에 붙여넣어 주세요.\n\n※내용 확인 없이 체크박스에 확인하신 경우 생기는 문제에 대해 책임은 의뢰주에게 있습니다.');
     }
 </script>
 </body>
